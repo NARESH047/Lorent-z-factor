@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/app_background_white_blue"
-    android:backgroundTint="#80FFFFFF"
+    android:backgroundTint="#80FFFFF"
     android:backgroundTintMode="src_over"
     >
 
