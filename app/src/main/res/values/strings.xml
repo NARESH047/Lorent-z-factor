@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Lorentz factor</string>
+    <string name="relative_velocity_in_unit_of_choice">Relative velocity in unit of choice</string>
+    <string name="units">Units</string>
+    <string name="meter_per_second">Meter per second</string>
+    <string name="feet_per_second">Feet per second</string>
+    <string name="calculate">CALCULATE</string>
+    <string name="lorentz_factor">Lorentz Factor:</string>
+</resources>
