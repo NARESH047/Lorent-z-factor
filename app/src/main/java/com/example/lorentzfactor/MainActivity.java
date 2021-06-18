@@ -1,16 +1,19 @@
 package com.example.lorentzfactor;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
-import android.text.Editable;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 
@@ -18,66 +21,82 @@ import androidx.appcompat.app.AppCompatActivity;
  * This app finds and displays Lorentz Factor for given relative velocity.
  */
 public class MainActivity extends AppCompatActivity {
-    Double Vel,c,C;
-    boolean MeterSec, FeetSec;
+    Double Vel, c, C;
+    int Score = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        /**
-         * Updates Lorentz's factor value if units of input is changed.
-         * Calls calculate and display method.
-         */
-        RadioButton isMeterSec = (RadioButton) findViewById(R.id.meter_sec);
-        MeterSec = isMeterSec.isChecked();
-        RadioButton isFeetSec = (RadioButton) findViewById(R.id.feet_sec);
-        FeetSec = isFeetSec.isChecked();
-
-        isMeterSec.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MeterSec = true;
-                FeetSec = false;
-                CalculateAndDisplay();
-            }
-        });
-
-        isFeetSec.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FeetSec = true;
-                MeterSec = false;
-                CalculateAndDisplay();
-            }
-        });
+    }
 
 
-        /**
-         *This method checks if relative velocity has been changed.
-         * Updates Lorentz's factor value if relative velocity is changed.
-         * Calls calculate and display method.
-         */
+    /**
+     * This method checks if CHECK button is clicked.
+     * Checks if relative velocity, obtained answer has been provided if not informs the same through toast.
+     * Checks if answered Lorentz's factor is correct.
+     */
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void Check(View V) {
+
         EditText velocity = (EditText) findViewById(R.id.velocity);
-        velocity.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        EditText GivenAnswer = (EditText) findViewById(R.id.GiveAnswer);
+
+        if (TextUtils.isEmpty(velocity.getText().toString())) {
+            Context context = getApplicationContext();
+            CharSequence text = "Enter relative velocity";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+
+        } else if (TextUtils.isEmpty(GivenAnswer.getText().toString())) {
+            Context context = getApplicationContext();
+            CharSequence text = "Enter your answer";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+
+        } else {
+            Double given = Double.parseDouble(GivenAnswer.getText().toString());
+            Double ForTrucating = Math.floor(given * Math.pow(10, 3));
+            Double givenTrucated = ForTrucating / (Math.pow(10, 3));
+            String given_rounded = String.format("%.3f",givenTrucated);
+            String givenAnswer = given_rounded;
+            String CorrectAnswer = calculate();
+
+
+            if (givenAnswer.equals(CorrectAnswer)) {
+
+                LinearLayout DuringGame = (LinearLayout) findViewById(R.id.DuringGame);
+                DuringGame.setVisibility(View.GONE);
+
+                LinearLayout AfterCorrect = (LinearLayout) findViewById(R.id.AfterCorrect);
+                AfterCorrect.setVisibility(View.VISIBLE);
+                Score = Score + 1;
+                DisplayScoreDuringGame(Score);
+
+
+            } else {
+
+                LinearLayout DuringGame = (LinearLayout) findViewById(R.id.DuringGame);
+                DuringGame.setVisibility(View.GONE);
+
+                LinearLayout AfterWrong = (LinearLayout) findViewById(R.id.AfterWrong);
+                AfterWrong.setVisibility(View.VISIBLE);
+                displayValue(CorrectAnswer);
+                displayGivenAnswer(givenAnswer);
+
+                DisplayScoreAfterGame(Score);
+
+                Vibrator w = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    w.vibrate(VibrationEffect.createOneShot(800, VibrationEffect.DEFAULT_AMPLITUDE));
+                } else {
+                    w.vibrate(800);
+                }
 
             }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                CalculateAndDisplay();
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-
+        }
     }
 
 
@@ -85,7 +104,12 @@ public class MainActivity extends AppCompatActivity {
      * Checks for unit of relative velocity entered.
      * Calls calculation method.
      */
-    public String calculate(boolean MeterSec, boolean FeetSec) {
+    public String calculate() {
+        RadioButton isMeterSec = (RadioButton) findViewById(R.id.meter_sec);
+        boolean MeterSec = isMeterSec.isChecked();
+        RadioButton isFeetSec = (RadioButton) findViewById(R.id.feet_sec);
+        boolean FeetSec = isFeetSec.isChecked();
+
         EditText velocity = (EditText) findViewById(R.id.velocity);
         if (TextUtils.isEmpty(velocity.getText().toString())) {
             Context context = getApplicationContext();
@@ -94,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
 
-        } else {
+        } else{
             String Velocity = velocity.getText().toString();
             Vel = Double.parseDouble(Velocity);
 
@@ -103,21 +127,21 @@ public class MainActivity extends AppCompatActivity {
                 String Value = calculation(Vel, c);
                 return (Value);
             } else if (FeetSec) {
-                C = 299792458 * (3.280839895);
+                C = 299792458 * 3.280839895;
                 String Value = calculation(Vel, C);
                 return (Value);
             }
-
+            return "1";
         }
 
-        return null;
+        return "1";
     }
 
 
     /**
      * *
      * Calculates Lorentz factor.
-     * Limits decimal places to 14 digits.
+     * Limits decimal places to 3 digits.
      *
      * @param Vel
      * @param c
@@ -129,10 +153,10 @@ public class MainActivity extends AppCompatActivity {
             Double z = Math.pow((Vel / c), 2);
             Double t = (1 - z);
             LorentzFactor = (Math.pow(t, -0.5));
-            Double ForTrucating = Math.floor(LorentzFactor * Math.pow(10,14));
-            Double LorentzFactorTrucated = ForTrucating/(Math.pow(10,14));
-            String LF = LorentzFactorTrucated.toString();
-            return (LF);
+            Double ForTrucating = Math.floor(LorentzFactor * Math.pow(10, 3));
+            Double LorentzFactorTrucated = ForTrucating / (Math.pow(10, 3));
+            String LF_rounded = String.format("%.3f",LorentzFactorTrucated);
+            return (LF_rounded);
 
         } else {
             Context context = getApplicationContext();
@@ -143,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-        return "";
+        return null;
     }
 
 
@@ -151,41 +175,73 @@ public class MainActivity extends AppCompatActivity {
      * This method displays Lorentz's factor value on the screen.
      */
     private void displayValue(String Value) {
-        TextView ValueTextView = (TextView) findViewById(R.id.Lorentz_Factor_Value);
-        ValueTextView.setText(Value);
+        TextView ValueTextView = (TextView) findViewById(R.id.CorrectAnswerDisplay);
+        ValueTextView.setText("Correct Answer: "+ Value);
     }
 
 
     /**
-     * This method displays personal message ;) if Lorenz's factor value is on screen.
+     * This method displays given answer on the screen.
      */
+    private void displayGivenAnswer(String givenanswer) {
+        TextView ValueTextView = (TextView) findViewById(R.id.GivenAnswer);
+        ValueTextView.setText("Given Answer: "+givenanswer);
+    }
 
-    public void displayAboutTreat() {
-        EditText velocity = (EditText) findViewById(R.id.velocity);
-        if (TextUtils.isEmpty(velocity.getText().toString()) || !((0 <= Vel) && (Vel < c))) {
-            TextView ValueTextView = (TextView) findViewById(R.id.TextAboutTreat);
-            ValueTextView.setText("");
 
-        } else {
-            TextView PersonalTextView = (TextView) findViewById(R.id.TextAboutTreat);
-            PersonalTextView.setText("Treat eppa Da?!");
+    /**
+     * This method displays Score on the screen during game.
+     */
+    private void DisplayScoreDuringGame(int num) {
+        TextView ValueTextView = (TextView) findViewById(R.id.DisplayScoreDuringGame);
+        ValueTextView.setText("Score: " + num);
+    }
 
-        }
+
+    /**
+     * This method displays Score on the screen after game.
+     */
+    private void DisplayScoreAfterGame(int num) {
+        TextView ValueTextView = (TextView) findViewById(R.id.DisplayScoreAfterGame);
+        ValueTextView.setText("Score: " + num);
+    }
+
+
+    /**
+     * This method is called when NEXT button is clicked.
+     * Makes After correct layout disappear and during game layout to appear on screen.
+     */
+    public void Next(View v) {
+
+        TextView scoreTextView = (TextView) findViewById(R.id.DisplayScoreDuringGame);
+        scoreTextView.setText("");
+
+        LinearLayout AfterCorrect = (LinearLayout) findViewById(R.id.AfterCorrect);
+        AfterCorrect.setVisibility(View.GONE);
+
+        LinearLayout DuringGame = (LinearLayout) findViewById(R.id.DuringGame);
+        DuringGame.setVisibility(View.VISIBLE);
 
     }
 
 
     /**
-     * calculates and displays message.
-     * This method is called when either the unit is changed or relative velocity is changed.
+     * This method is called when TRY AGAIN button is clicked.
+     * Makes After wrong layout disappear and during game layout appear on screen.
      */
+    public void TryAgain(View v) {
 
-    public void CalculateAndDisplay() {
-        String value = calculate(MeterSec, FeetSec);
+        TextView scoreTextView = (TextView) findViewById(R.id.DisplayScoreDuringGame);
+        scoreTextView.setText(" ");
 
-        String VALUE = value;
-        displayValue(VALUE);
-        displayAboutTreat();
+        Score = 0;
+
+        LinearLayout AfterWrong = (LinearLayout) findViewById(R.id.AfterWrong);
+        AfterWrong.setVisibility(View.GONE);
+
+        LinearLayout DuringGame = (LinearLayout) findViewById(R.id.DuringGame);
+        DuringGame.setVisibility(View.VISIBLE);
+
 
     }
 
