@@ -13,9 +13,6 @@
         <activity android:name=".CalculatorActivity"/>
         <activity android:name=".QuizActivity"/>
         <activity android:name=".SpiActivity"/>
-
-
-
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

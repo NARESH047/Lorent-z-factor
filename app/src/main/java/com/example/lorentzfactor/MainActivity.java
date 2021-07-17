@@ -27,6 +27,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        TextView SpiCalculator = (TextView) findViewById(R.id.SpiCalculator);
+        SpiCalculator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent CalculatorIntent = new Intent(MainActivity.this, SpiActivity.class);
+                startActivity(CalculatorIntent);
+            }
+        });
+
         TextView Quiz = (TextView) findViewById(R.id.Quiz);
         Quiz.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -46,8 +46,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:layout_marginBottom="24dp">
+        android:background="@color/white">
         <TextView
             android:id="@+id/Calculator"
             style="@style/CategoryStyle"
@@ -58,34 +57,10 @@
             android:text="Calculator" />
     </FrameLayout>
 
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:cardElevation="10dp"
-            app:cardCornerRadius="20dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            app:cardBackgroundColor="@color/white"
-            app:cardMaxElevation="12dp"
-            android:layout_weight="1"
-            app:cardPreventCornerOverlap="true"
-            app:cardUseCompatPadding="true"
-            >
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/lorentz_factor"
-                android:layout_gravity="center"
-                />
-        </androidx.cardview.widget.CardView>
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#16AFCA"
-        android:layout_marginTop="24dp">
+        android:background="#16AFCA">
         <TextView
             android:id="@+id/Quiz"
             style="@style/CategoryStyle"
@@ -95,6 +70,42 @@
             android:background="?android:attr/selectableItemBackground"
             android:text="Quiz" />
     </FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+        <TextView
+            android:id="@+id/SpiCalculator"
+            style="@style/CategoryStyle"
+            android:textColor="#16AFCA"
+            android:textSize="42dp"
+            android:gravity="center"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="Spi-Calculator" />
+    </FrameLayout>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:cardElevation="10dp"
+        app:cardCornerRadius="20dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardMaxElevation="12dp"
+        android:layout_weight="1"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/lorentz_factor"
+            android:layout_gravity="center"
+            />
+    </androidx.cardview.widget.CardView>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
