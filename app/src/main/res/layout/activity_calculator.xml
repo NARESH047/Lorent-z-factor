@@ -32,7 +32,7 @@
                 android:id="@+id/custom_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Lorentz's Factor"
+                android:text="Calculator"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -42,21 +42,76 @@
         </androidx.appcompat.widget.Toolbar>
 
     </LinearLayout>
-
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white">
-        <TextView
-            android:id="@+id/Calculator"
-            style="@style/CategoryStyle"
-            android:textColor="#16AFCA"
-            android:textSize="52dp"
-            android:gravity="center"
-            android:background="?android:attr/selectableItemBackground"
-            android:text="Calculator" />
-    </FrameLayout>
+        android:layout_height="match_parent"
+        android:layout_margin="16dp"
+        android:orientation="vertical">
+        <EditText
+            android:id="@+id/velocity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:hint="@string/relative_velocity_in_unit_of_choice"
+            android:inputType="numberDecimal" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Units"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:fontFamily="serif"
+            android:layout_marginLeft="8dp"
+            android:layout_marginBottom="8dp"/>
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            >
+            <RadioButton
+                android:id="@+id/meter_sec"
+                style="@style/RadioButton"
+                android:checked="true"
+                android:text="@string/meter_per_second" />
+            <RadioButton
+                android:id="@+id/feet_sec"
+                style="@style/RadioButton"
+                android:text="@string/feet_per_second" />
+        </RadioGroup>
+
+
+        <TextView
+            android:id="@+id/Lorentz_Factor_Value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:textSize="28sp"
+            android:textColor="#000000"
+            android:fontFamily="serif"
+            android:layout_marginTop="64dp"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            />
+
+        <TextView
+            android:id="@+id/TextAboutTreat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:textSize="16sp"
+            android:textColor="#000000"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="32dp"
+            android:layout_gravity="center_horizontal"
+            />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -79,20 +134,6 @@
                 android:layout_gravity="center"
                 />
         </androidx.cardview.widget.CardView>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#16AFCA">
-        <TextView
-            android:id="@+id/Quiz"
-            style="@style/CategoryStyle"
-            android:textColor="@color/white"
-            android:textSize="52dp"
-            android:gravity="center"
-            android:background="?android:attr/selectableItemBackground"
-            android:text="Quiz" />
-    </FrameLayout>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -101,5 +142,4 @@
             android:textColor="#006994"
             android:text="With love from Naresh :)"/>
     </LinearLayout>
-
-
+</LinearLayout>
