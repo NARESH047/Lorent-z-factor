@@ -34,7 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="32dp"
-                android:text="Lorentz's Factor"
+                android:text="@string/quiz"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold" />

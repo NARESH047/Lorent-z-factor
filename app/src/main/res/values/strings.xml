@@ -6,4 +6,9 @@
     <string name="feet_per_second">Feet per second</string>
     <string name="calculate">CALCULATE</string>
     <string name="lorentz_factor">Lorentz Factor:</string>
+    <string name="try_again">TRY AGAIN</string>
+    <string name="wrong_answer">Wrong Answer!</string>
+    <string name="all_the_best_da">All the best da!</string>
+    <string name="with_love_from_naresh">With love from Naresh :)</string>
+    <string name="quiz">Quiz</string>
 </resources>

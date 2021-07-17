@@ -32,7 +32,7 @@
                 android:id="@+id/custom_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Lorentz's Factor"
+                android:text="Calculator"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold"
