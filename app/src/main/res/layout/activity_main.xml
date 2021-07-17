@@ -8,19 +8,20 @@
     android:orientation="vertical"
     android:background="@drawable/app_background_white_blue"
     android:backgroundTint="#80FFFFFF"
-    android:backgroundTintMode="src_over"
-    >
+    android:id="@+id/MainLayout"
+    android:backgroundTintMode="src_over">
+
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#0077A6">
+
             <ImageView
                 android:id="@+id/Icon"
                 android:layout_width="24dp"
@@ -32,21 +33,24 @@
                 android:id="@+id/custom_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingLeft="32dp"
                 android:text="Lorentz's Factor"
                 android:textColor="@color/white"
                 android:textSize="16sp"
-                android:textStyle="bold"
-                android:paddingLeft="32dp"
-                />
+                android:textStyle="bold" />
 
         </androidx.appcompat.widget.Toolbar>
 
     </LinearLayout>
+
+
     <LinearLayout
+        android:id="@+id/DuringGame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="16dp"
         android:orientation="vertical">
+
         <EditText
             android:id="@+id/velocity"
             android:layout_width="match_parent"
@@ -56,90 +60,207 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="16dp"
             android:textStyle="bold"
+            android:textColorHint="#3A3B3C"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:hint="@string/relative_velocity_in_unit_of_choice"
             android:inputType="numberDecimal" />
 
+        <EditText
+            android:id="@+id/GiveAnswer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="16dp"
+            android:hint="Your answer upto 3 decimal digits"
+            android:inputType="numberDecimal"
+            android:textColorHint="#3A3B3C"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="serif"
             android:text="Units"
             android:textColor="#000000"
-            android:textSize="24sp"
-            android:fontFamily="serif"
-            android:layout_marginLeft="8dp"
-            android:layout_marginBottom="8dp"/>
+            android:textSize="24sp" />
 
         <RadioGroup
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-medium"
-            >
+            android:fontFamily="sans-serif-medium">
+
             <RadioButton
                 android:id="@+id/meter_sec"
                 style="@style/RadioButton"
                 android:checked="true"
                 android:text="@string/meter_per_second" />
+
             <RadioButton
                 android:id="@+id/feet_sec"
                 style="@style/RadioButton"
                 android:text="@string/feet_per_second" />
         </RadioGroup>
 
-
-        <TextView
-            android:id="@+id/Lorentz_Factor_Value"
+        <Button
+            android:id="@+id/Check"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" "
-            android:textSize="28sp"
-            android:textColor="#000000"
-            android:fontFamily="serif"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="64dp"
-            android:textStyle="bold"
-            android:layout_gravity="center_horizontal"
-            />
-
-        <TextView
-            android:id="@+id/TextAboutTreat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=" "
-            android:textSize="16sp"
+            android:onClick="Check"
+            android:fontFamily="serif"
+            android:text="CHECK"
             android:textColor="#000000"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="32dp"
-            android:layout_gravity="center_horizontal"
-            />
+            android:textSize="28sp"
+            android:textStyle="bold"/>
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:cardElevation="10dp"
-            app:cardCornerRadius="20dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            app:cardBackgroundColor="@color/white"
-            app:cardMaxElevation="12dp"
-            android:layout_weight="1"
-            app:cardPreventCornerOverlap="true"
-            app:cardUseCompatPadding="true"
-            >
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/relativity_formulas"
-                android:layout_gravity="center"
-                />
-        </androidx.cardview.widget.CardView>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="8dp"
             android:layout_gravity="center_horizontal"
+            android:text="With love from Naresh :)"
             android:textColor="#006994"
-            android:text="With love from Naresh :)"/>
+            android:textSize="8dp" />
+
     </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/AfterCorrect"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:background="#8090EE90"
+        android:backgroundTintMode="src_over">
+
+        <TextView
+            android:id="@+id/DisplayAnswerISCorrect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="108dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="serif"
+            android:text="CORRECT!"
+            android:textColor="#000000"
+            android:textSize="48sp" />
+
+        <Button
+            android:id="@+id/Next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="64dp"
+            android:backgroundTint="#4CBB17"
+            android:fontFamily="serif"
+            android:text="NEXT"
+            android:textColor="#000000"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:onClick="Next"/>
+
+        <TextView
+            android:id="@+id/DisplayScoreDuringGame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="serif"
+            android:text=" "
+            android:textColor="#000000"
+            android:textSize="32sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/with_love_from_naresh"
+            android:textColor="#006994"
+            android:layout_marginTop="32dp"
+            android:textSize="16dp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/AfterWrong"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:background="#80ff0000"
+        android:backgroundTintMode="src_over">
+
+        <TextView
+            style="@style/HeaderText"
+            android:text="@string/wrong_answer"
+            android:textColor="#212121" />
+
+        <TextView
+            style="@style/HeaderText"
+            android:text="Try Again!"
+            android:textColor="#212121"
+
+            />
+
+        <TextView
+            android:id="@+id/CorrectAnswerDisplay"
+            style="@style/HeaderText"
+            android:text=" " />
+
+        <TextView
+            android:id="@+id/GivenAnswer"
+            style="@style/HeaderText"
+            android:text=" " />
+
+        <TextView
+            android:id="@+id/DisplayScoreAfterGame"
+            style="@style/HeaderText"
+            android:text=" " />
+
+        <Button
+            android:id="@+id/TryAgain"
+            android:layout_width="wrap_content"
+            android:layout_height="64dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="24dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#4CBB17"
+            android:onClick="TryAgain"
+            android:text="@string/try_again"
+            android:textColor="#212121"
+            android:textSize="24sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="54dp"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/all_the_best_da"
+            android:textColor="#212121"
+            android:textSize="24sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/with_love_from_naresh"
+            android:textColor="#006994"
+            android:layout_marginTop="32dp"
+            android:textSize="16dp" />
+
+    </LinearLayout>
+
+
 </LinearLayout>
