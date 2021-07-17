@@ -12,6 +12,8 @@
         android:theme="@style/Theme.LorentzFactor">
         <activity android:name=".CalculatorActivity"/>
         <activity android:name=".QuizActivity"/>
+        <activity android:name=".SpiActivity"/>
+
 
 
         <activity android:name=".MainActivity">
