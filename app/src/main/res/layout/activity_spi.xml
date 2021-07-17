@@ -51,35 +51,44 @@
 
 
         <TextView
+            android:id="@+id/Factor_Value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SPI FACTOR VALUE"
+            android:textSize="24sp"
+            android:textColor="#000000"
+            android:fontFamily="serif"
+            android:layout_marginTop="24dp"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal" />
+        <TextView
             android:id="@+id/Spi_Factor_Value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" "
-            android:textSize="32sp"
+            android:textSize="24sp"
             android:textColor="#000000"
             android:fontFamily="serif"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="24dp"
             android:textStyle="bold"
-            android:layout_gravity="center_horizontal"
-            />
+            android:layout_gravity="center_horizontal" />
         <TextView
             android:id="@+id/CurrentHour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" "
             android:textSize="24sp"
-            android:textColor="#000000"
+            android:textColor="#0077A6"
             android:fontFamily="sans-serif-medium"
             android:layout_marginTop="48dp"
-            android:layout_gravity="center_horizontal"
-            />
+            android:layout_gravity="center_horizontal" />
         <TextView
             android:id="@+id/CurrentMinute"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" "
             android:textSize="24sp"
-            android:textColor="#000000"
+            android:textColor="#0077A6"
             android:fontFamily="sans-serif-medium"
             android:layout_marginTop="16dp"
             android:layout_gravity="center_horizontal"
@@ -90,7 +99,7 @@
             android:layout_height="wrap_content"
             android:text=" "
             android:textSize="24sp"
-            android:textColor="#000000"
+            android:textColor="#0077A6"
             android:fontFamily="sans-serif-medium"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="80dp"

@@ -22,26 +22,8 @@ public class SpiActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spi);
-        Timer timer = new Timer();
         Timer timer1 = new Timer();
         Timer timer2 = new Timer();
-
-
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Time();
-                        TextView ValueTextView = (TextView) findViewById(R.id.Spi_Factor_Value);
-                        ValueTextView.setText(null);
-                        displayValue(spi());
-                        displaySecond(Second());
-                    }
-                });
-            }
-        },0,1000);
 
         timer1.schedule(new TimerTask() {
             @Override
@@ -52,11 +34,13 @@ public class SpiActivity extends AppCompatActivity {
                         Time();
                         TextView ValueTextView = (TextView) findViewById(R.id.Spi_Factor_Value);
                         ValueTextView.setText(null);
+                        displayValue(spi());
+                        displaySecond(Second());
                         displayMinute(Minute());
                     }
                 });
             }
-        },0,60000);
+        },0,1000);
 
         timer2.schedule(new TimerTask() {
             @Override
