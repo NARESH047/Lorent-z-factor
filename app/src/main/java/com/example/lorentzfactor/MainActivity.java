@@ -22,8 +22,8 @@ public class MainActivity extends AppCompatActivity {
         Calculator.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent numbersIntent = new Intent(MainActivity.this, CalculatorActivity.class);
-                startActivity(numbersIntent);
+                Intent CalculatorIntent = new Intent(MainActivity.this, CalculatorActivity.class);
+                startActivity(CalculatorIntent);
             }
         });
 
@@ -31,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
         Quiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent numbersIntent = new Intent(MainActivity.this, QuizActivity.class);
-                startActivity(numbersIntent);
+                Intent QuizIntent = new Intent(MainActivity.this, QuizActivity.class);
+                startActivity(QuizIntent);
             }
         });
     }

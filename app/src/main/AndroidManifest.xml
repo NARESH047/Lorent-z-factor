@@ -10,6 +10,10 @@
         android:roundIcon="@drawable/app_icon_general_relativity"
         android:supportsRtl="true"
         android:theme="@style/Theme.LorentzFactor">
+        <activity android:name=".CalculatorActivity"/>
+        <activity android:name=".QuizActivity"/>
+
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
