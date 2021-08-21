@@ -71,6 +71,7 @@ public class SpiActivity extends AppCompatActivity {
         }
         second = rn.getSecond();
     }
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     public int hourFact() {
         int i;

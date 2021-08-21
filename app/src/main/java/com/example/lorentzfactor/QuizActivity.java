@@ -1,6 +1,7 @@
 package com.example.lorentzfactor;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.VibrationEffect;
@@ -23,11 +24,14 @@ import androidx.appcompat.app.AppCompatActivity;
 public class QuizActivity extends AppCompatActivity {
     Double Vel, c, C;
     int Score = 0;
-
+    int hs;
+    SharedPreferences highScore;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checker);
+        highScore = getSharedPreferences("High Score", 0);
+
     }
 
 
@@ -70,6 +74,9 @@ public class QuizActivity extends AppCompatActivity {
                 LinearLayout DuringGame = (LinearLayout) findViewById(R.id.DuringGame);
                 DuringGame.setVisibility(View.GONE);
 
+                velocity.setText("");
+                GivenAnswer.setText("");
+
                 LinearLayout AfterCorrect = (LinearLayout) findViewById(R.id.AfterCorrect);
                 AfterCorrect.setVisibility(View.VISIBLE);
                 Score = Score + 1;
@@ -77,6 +84,13 @@ public class QuizActivity extends AppCompatActivity {
 
 
             } else {
+                hs = highScore.getInt("highScore", 0);
+                if (Score > hs) {
+                    highScore.edit().putInt("highScore", Score).commit();
+                    DisplayHighScoreAfterGame(Score);
+                } else {
+                    DisplayHighScoreAfterGame(hs);
+                }
 
                 LinearLayout DuringGame = (LinearLayout) findViewById(R.id.DuringGame);
                 DuringGame.setVisibility(View.GONE);
@@ -85,6 +99,10 @@ public class QuizActivity extends AppCompatActivity {
                 AfterWrong.setVisibility(View.VISIBLE);
                 displayValue(CorrectAnswer);
                 displayGivenAnswer(givenAnswer);
+
+                velocity.setText("");
+                GivenAnswer.setText("");
+
 
                 DisplayScoreAfterGame(Score);
 
@@ -206,6 +224,14 @@ public class QuizActivity extends AppCompatActivity {
         ValueTextView.setText("Score: " + num);
     }
 
+    /**
+     * This method displays High Score on the screen after game.
+     */
+    private void DisplayHighScoreAfterGame(int num) {
+        TextView ValueTextView = (TextView) findViewById(R.id.DisplayHighScoreAfterGame);
+        ValueTextView.setText("High Score: " + num);
+    }
+
 
     /**
      * This method is called when NEXT button is clicked.
@@ -244,6 +270,5 @@ public class QuizActivity extends AppCompatActivity {
 
 
     }
-
 
 }

@@ -228,6 +228,11 @@
             style="@style/HeaderText"
             android:text=" " />
 
+        <TextView
+            android:id="@+id/DisplayHighScoreAfterGame"
+            style="@style/HeaderText"
+            android:text=" " />
+
         <Button
             android:id="@+id/TryAgain"
             android:layout_width="wrap_content"
